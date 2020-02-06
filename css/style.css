@@ -1,0 +1,85 @@
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+
+#datasource{
+    align: left;
+    position: absolute;
+    z-index: 1;
+    top: 2%;
+    left: 1%;
+    background-color: #ffffff;
+    opacity: 0.8;
+}
+
+
+#visvariables{
+    align: left;
+    position: absolute;
+    z-index: 1;
+    bottom: 2%;
+    left: 1%;
+    background-color: #ffffff;
+    opacity: 0.8;
+}
+
+#datapaneltr tr, td thead{
+    margin: 2px;
+    padding: 2px;
+    text-align: left;
+    padding: 2px;
+}
+
+#layerpanel tr, td thead{
+    margin: 2px;
+    padding: 2px;
+    text-align: left;
+    padding: 2px;
+}
+
+.label{
+    fill: #000000;
+    stroke-width: 0.1px;
+    text-anchor: middle;
+    opacity: 0.8;
+    pointer-events: all;
+    text-shadow:  none;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+
+/* for the 3D part*/
+.basemap3D{
+    fill: none;
+    opacity: 0.8;
+    stroke: #444;
+    stroke-width: .5px;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: all;
+}
+
+.basemaplabel3D{
+    font-size : 50px;
+    fill: rgba(8, 9, 11, 0.26);
+    stroke-width: .1px;
+    text-anchor: middle;
+    opacity: 0.8;
+    pointer-events: all;
+}
+
+.migration_map_div{
+    position: absolute;
+}
