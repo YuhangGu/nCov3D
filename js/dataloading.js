@@ -18,30 +18,30 @@ function initData(callback) {
 function loadData(callback) {
 
     var loader = new THREE.FontLoader();
-    /*
+    
 
-     loader.load( '../data/helvetiker_regular.typeface.json', function ( font ) {
+     loader.load( './helvetiker_regular.typeface.json', function ( font ) {
 
         fontData = font;
 
     } );
 
+
+     /*
+    loader.load( './FangSong_GB2312_Regular.json', function ( font ) {
+
+        fontData = font;
+
+    } );
 
     */
 
-    loader.load( '../data/FangSong_GB2312_Regular.json', function ( font ) {
-
-        fontData = font;
-
-    } );
-
-
-    d3.json("../data/china_data.json")
+    d3.json("./china_data.json")
         .then(function(data) {
             dataChina = data;
         });
 
-    d3.json("../data/china_s.geojson")
+    d3.json("./china_s.geojson")
         .then(function(data) {
             dataChinaGeo = data.features;
         });

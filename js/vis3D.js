@@ -906,7 +906,7 @@ function initPrismMap() {
 
         //-----------add text------------
 
-        var geometryText = new THREE.TextGeometry(d.properties.SNAME + ':' + height, {
+        var geometryText = new THREE.TextGeometry(  height + '', {
             font: fontData,
             size: 40,
             height: 5,
