@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>3D Flow Map</title>
+
+    <!-- Mapbox -->
+
+    <!--script src='https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet'/-->
+
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v2.min.js"></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
+    <script src="https://rawgit.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js"></script>
+    <script src="https://rawgit.com/mrdoob/three.js/master/examples/js/renderers/CSS3DRenderer.js"></script>
+    <script src="https://rawgit.com/mrdoob/three.js/master/examples/js/renderers/SVGRenderer.js"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+    <!-- Tween -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.js"></script>
+
+
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body onload="visStart_3D()">
+<div id="map"></div>
+
+<!--div id="datasource">
+    <table class="table bg-info" id="datapanel">
+        <thead>
+        <tr>
+            <td>Data Source</td>
+        </tr>
+        </thead>
+
+        <tr>
+            <td>O&I</td>
+            <td><input type="radio" name="datacontrol"   checked value="all"></td>
+        </tr>
+
+        <tr>
+            <td>Out</td>
+            <td><input type="radio" name="datacontrol"   value="out"></td>
+        </tr>
+
+        <tr>
+            <td>In</td>
+            <td><input type="radio" name="datacontrol"   value="in"></td>
+        </tr>
+        <tr>
+            <td>res</td>
+            <td><input type="radio" name="datacontrol"   value="res"></td>
+        </tr>
+
+
+    </table>
+</div-->
+
+
+
+<!--div id="visvariables">
+    <table class="table bg-info" id="layerpanel">
+        <thead>
+        <tr>
+            <td>preliminary design</td>
+        </tr>
+        </thead>
+        <tr>
+            <td>OD Matrix</td>
+            <td><input type="radio" name="layercontrol"   value="matrix"></td>
+        </tr>
+        <tr>
+            <td>force direct</td>
+            <td><input type="radio" name="layercontrol"   value="force-direct"></td>
+        </tr>
+        <tr>
+            <td>point OD map</td>
+            <td><input type="radio" name="layercontrol" value="point-map"></td>
+        </tr>
+        <tr>
+            <td>network</td>
+            <td><input type="radio" name="layercontrol"  value="network"></td>
+        </tr>
+        <tr>
+            <td>prism map</td>
+            <td><input type="radio" name="layercontrol"  checked value="prism-map"></td>
+        </tr>
+        <tr>
+            <td>flow map</td>
+            <td><input type="radio" name="layercontrol"  value="flow-map"></td>
+        </tr>
+        <tr>
+            <td>hybird type</td>
+        </tr>
+        <tr>
+            <td>3D Pie Map</td>
+            <td><input type="radio" name="layercontrol"   value="symbolmap-3Dpie-1"></td>
+        </tr>
+        <tr>
+            <td>3D Pie Map-2</td>
+            <td><input type="radio" name="layercontrol"   value="symbolmap-3Dpie-2"></td>
+        </tr>
+        <tr>
+            <td>3D Ring Map</td>
+            <td><input type="radio" name="layercontrol"   value="symbolmap-3Dpie-3"></td>
+        </tr>
+        <tr>
+            <td>Embeded Prism Map</td>
+            <td><input type="radio" name="layercontrol"  value="symbolmap-3Dgeo"></td>
+        </tr>
+        <tr>
+            <td>Two Maps in 3D</td>
+            <td><input type="radio" name="layercontrol"  value="flowmap-double-parallel"></td>
+        </tr>
+        <tr>
+            <td>Two Maps in 3D-2</td>
+            <td><input type="radio" name="layercontrol"  value="flowmap-double-orthogonal"></td>
+        </tr>
+        <tr>
+            <td>3D Sankey Map</td>
+            <td><input type="radio" name="layercontrol"   value="sankey-map"></td>
+        </tr>
+        <tr>
+            <td>3D Sankey Map-2</td>
+            <td><input type="radio" name="layercontrol"   value="sankey-map-2"></td>
+        </tr>
+        <tr>
+            <td>3D Sankey Map-3</td>
+            <td><input type="radio" name="layercontrol"   value="sankey-map-3"></td>
+        </tr>
+        <tr>
+            <td>3D Map Matrix</td>
+            <td><input type="radio" name="layercontrol"   value="3dMatrxMap"></td>
+        </tr>
+
+
+
+
+    </table>
+</div-->
+
+<!-- Custom Theme JavaScript -->
+
+<script src="./libs/DragControls.js"></script>
+<script src="./libs/TrackballControls.js"></script>
+
+<script src="./js/main.js"></script>
+<script src="./js/dataloading.js"></script>
+<script src="./js/symbol.js"></script>
+<script src="./js/vis3D.js"></script>
+
+</body>
+
+</html>
